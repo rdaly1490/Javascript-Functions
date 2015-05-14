@@ -8,7 +8,20 @@
  */
 function checkData(inputString) {
 	// your code goes here
+	if (typeof inputString !== "string") {
+		throw "Invalid Input";
+	}
+	if (inputString.length === 3) {
+		return true;
+	}
+	else {
+		return false;
+		}
 }
+
+var isLengthThree = checkData("abc");
+
+console.log(isLengthThree);
 
 /*
  * PROBLEM `concatenateArrays`: (easy)
@@ -18,8 +31,20 @@ function checkData(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function concatenateArrays(a, b) {
+
 	// your code goes here
+	if (typeof a || typeof b === Array && "number") {
+		var combo = a.concat(b);
+		return combo;		
+	}
+	else {
+		throw "Invalid Input";
+	}
 }
+var array1 = [1,2,3];
+var array2 = ["a",5,6];
+var testCombo = concatenateArrays(array1, array2);
+console.log(testCombo);
 
 /*
  * PROBLEM `fixProperNoun`: (easy)
@@ -31,8 +56,18 @@ function concatenateArrays(a, b) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function fixProperNoun(noun) {
-	// your code goes here
+	if (typeof noun !== "string" || noun === "") {
+		throw "Invalid Input";
+	}
+	else {
+		var lowercase = noun.toLowerCase();
+		var uppercase = lowercase.charAt(0).toUpperCase();
+		return uppercase + lowercase.slice(1);
+	}
 }
+
+var testNoun = fixProperNoun("fOOd");
+console.log(testNoun);
 
 /*
  * PROBLEM `sortLetters`: (easy)
@@ -42,8 +77,20 @@ function fixProperNoun(noun) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function sortLetters(inputString) {
-	// your code goes here
-}
+	if (typeof inputString !== "string") {
+		throw "Invalid Input";
+	}
+	else {
+		// var textCase = inputString.toLowerCase();
+		var stringArray = inputString.split("");
+		var sort = stringArray.sort();
+		var rejoin = sort.join("");
+		return rejoin;
+	}
+} 
+
+var testSort = sortLetters("Hope");
+console.log(testSort)
 
 /*
  * PROBLEM `absVal`: (easy)
@@ -52,9 +99,28 @@ function sortLetters(inputString) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+
 function absVal(integer) {
-	// your code goes here
+	if (isNaN(integer) || integer === null || integer === "" || integer % 1 !== 0) {
+		throw "Invalid Input";
+	}
+	if (integer > 0) {
+		return integer;
+	}
+	else if (integer < 0) {
+		return (integer+(integer*(-2)));
+	}
+	else {
+		return 0;
+		}
 }
+
+var neg = absVal(-45);
+console.log(neg);
+var pos = absVal(45);
+console.log(pos);
+var zero = absVal(0);
 
 /*
  * PROBLEM `myMin`: (easy)
@@ -63,6 +129,21 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+ function myMin(a,b) {
+ 	if (typeof a !== "number" || typeof b !== "number" || a === NaN || b === NaN || a % 1 !== 0 || b % 1 !==0) {
+ 		throw "Invalid Input";
+ 	}
+ 	if (a > b) {
+ 		return b;
+ 	}
+ 	else {
+ 		return a;
+ 	}
+ }
+
+ var notEqual = myMin(2,5);
+ console.log(notEqual);
 
 /*
  * PROBLEM `myMax`: (easy) - Actual Interview Question
@@ -73,6 +154,19 @@ function absVal(integer) {
  *
  * Insane mode: do this without using a for loop.
  */
+
+ function myMax(array) {
+ 	if (Array.isArray(array)) {
+ 		var largest = Math.max.apply(Math, array);
+ 		return largest;
+ 	}
+ 	else {
+ 		throw "Invalid Input";
+ 	}
+ }
+
+var max = myMax([1,2,3,4]);
+console.log(max);
 
 /*
  * PROBLEM `getMonth`: (easy)
@@ -85,19 +179,46 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function getMonth(month) {
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	if (typeof month !== "number" || month === "" || month % 1 !== 0 || month === null) {
+		throw "Invalid Input";
+	}
+	if (month <=12 && month > 0) {
+		return months[month-1];
+	}
+	else {
+		throw "Invalid Input";
+	}
+}
+
+console.log(getMonth(2));
 
 /*
  * PROBLEM `randomElement`: (medium)
  * Create a function called `randomElement` that takes an array of values and
  * returns one randomly selected value from that array.
  */
-
+ function randomElement(array) {
+ 	var rnd = Math.floor(Math.random()*array.length);
+ 	return array[rnd];
+ }
+var myArray = [1,3,5,8,2,9];
+console.log(randomElement(myArray));
 /*
  * PROBLEM `studentPairs`: (medium)
  * Create a javascript function called `studentPairs` that takes an array of
  * student names and returns an array of randomly selected pairs of students
  * (array of arrays).
  */
+
+function studentPairs(array) {
+
+}
+
+
+
+
 
 /*
  * PROBLEM `sumSquares`: (medium)
