@@ -436,10 +436,37 @@ console.log(multTest);
  * is invalid throw an 'Invalid Input' exception.
  */
 
-// function rot13(string) {
-// 	var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-// 	VAR rot13Array = []
-// }
+function rot13(string) {
+	
+
+
+
+	var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	var rot13Array = ["n","o","p","q","r","s","t","u","v","w","x","y","z","a","b","c","d","e","f","g","h","i","j","k","l","m"];
+
+
+	var rot = [];
+	var currentLetter = [];
+	var rotLetter = [];
+	for (var i = 0; i < string.length; i++) {
+		var currentLetter = string.charAt(i)
+		for (var n =0; n < alphabet.length; n++) {
+			if (alphabet[n] === currentLetter) {
+				rotLetter = rot13Array[n];
+				rot.push(rotLetter);
+			}
+			else if (currentLetter === " ") {
+				rot.push(" ");
+			}
+		}
+	}
+
+	return rot.join("");
+}
+
+var myTest = rot13("hello world how");
+
+console.log(myTest);
 
 
 
@@ -453,6 +480,40 @@ console.log(multTest);
  * is invalid throw an 'Invalid Input' exception.
  */
 
+function derot13(string) {
+	
+
+
+
+	var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	var rot13Array = ["n","o","p","q","r","s","t","u","v","w","x","y","z","a","b","c","d","e","f","g","h","i","j","k","l","m"];
+
+
+
+	var DecryptedString = [];
+	var currentRot = [];
+	var alphaLetter = [];
+	for (var i = 0; i < string.length; i++) {
+		var currentRot = string.charAt(i)
+		for (var n =0; n < rot13Array.length; n++) {
+			if (rot13Array[n] === currentRot) {
+				alphaLetter = alphabet[n];
+				DecryptedString.push(alphaLetter);
+			}
+			else if (currentRot === " ") {
+				DecryptedString.push(" ");
+			}
+		}
+	}
+
+	return DecryptedString.join("");
+}
+
+var myTest2 = derot13("uryyb");
+
+console.log(myTest2);
+
+
 /*
  * PROBLEM `rotn`: (hard)
  * Create a function called `rotn` that takes an unencrypted string and an
@@ -461,6 +522,34 @@ console.log(multTest);
  * The input should only contain lower-case alphabetic characters. If the input
  * is invalid throw an 'Invalid Input' exception.
  */
+
+ function rotn(string, a) {
+	
+
+
+
+	var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	// var rot13Array = ["n","o","p","q","r","s","t","u","v","w","x","y","z","a","b","c","d","e","f","g","h","i","j","k","l","m"];
+
+	var rot = [];
+	var currentLetter = [];
+	var rotLetter = [];
+	for (var i = 0; i < string.length; i++) {
+		var currentLetter = string.charAt(i);
+		for (var n = 0; n < alphabet.length; n++) {
+			if (currentLetter === alphabet[n]) {
+				rotLetter = alphabet[n + a];
+				rot.push(rotLetter);
+			}
+		}
+	}
+
+	return rot.join("");
+}
+
+var myTest2 = rotn("hello", 3);
+
+console.log(myTest2);
 
 /*
  * PROBLEM `findBoth`: (hard)
