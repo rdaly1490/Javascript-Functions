@@ -212,12 +212,34 @@ console.log(randomElement(myArray));
  * (array of arrays).
  */
 
-function studentPairs(array) {
+function studentPairs(students) {
+	
+	var pairs = [];
 
+	do {
+		var pair = [];
+		
+		var rndX = Math.floor(Math.random()*students.length);
+		var student1 = students.splice(rndX, 1);
+
+		var rndY = Math.floor(Math.random()*students.length);
+		var student2 = students.splice(rndY, 1);
+		
+		// students.splice(rndX, 1);
+		// students.splice(rndY, 1);
+		pair.push(student1);
+		pair.push(student2);
+
+		pairs.push(pair);
+
+	} while (students.length >= 2);
+	
+	return pairs;
 }
 
 
-
+var myStudents = ["Rob", "Tasha", "Atlas", "Dom", "Pat", "Matt", "Ryan", "Jenna"];
+console.log(studentPairs(myStudents));
 
 
 /*
@@ -227,6 +249,23 @@ function studentPairs(array) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function sumSquares(input) {
+
+	if (typeof input !== "number" || input % 1 !==0 || input === "") {
+		throw "Invalid Input";
+	}
+	var sum = 0;
+
+	for (var i = 0; i <= input; i++) {
+		var square = (i * i);
+		var sum = square + sum;
+	}
+	return sum;
+}
+
+console.log(sumSquares(4));
+
+
 
 /* 
  * PROBLEM `findMaxDiff`: (medium)
@@ -236,6 +275,32 @@ function studentPairs(array) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+function findMaxDiff(numberArray) {
+	
+	if (!Array.isArray(numberArray)) {
+		throw "Invalid Input";
+	}
+	var diff = 0;
+	var maxDiff = 0;
+
+	for (var i = 0; i <= numberArray.length; i++) {
+		// var diff = Math.abs(numberArray.charAt(i) - numberArray.charAt(i + 1));
+		var num1 = numberArray[i];
+		var num2 = numberArray[i+1];
+		var diff = Math.abs(num1 - num2);
+		if (diff > maxDiff) {
+			maxDiff = diff;
+		}
+	}
+	return maxDiff;
+}
+
+
+console.log(findMaxDiff([1,2,4,5]));
+
+
+
+
 /*
  * PROBLEM `insertDashes`: (medium)
  * Write a function called `insertDashes` that transforms a given sentence into
@@ -244,6 +309,27 @@ function studentPairs(array) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+
+function insertDashes(sentence) {
+		// var splitString = sentence.split(" ");
+	// var splitAgain = sentence.split("");	
+	// console.log(splitAgain);
+
+	for (var i = 0; i <= sentence.length; i++) {
+		if (sentence.charAt(i) !== " ") {
+			var dash = sentence.join("-");
+		}
+	}
+
+// var rejoin = splitAgain.join("-");
+	return sentence;
+}
+
+
+
+
+
 
 /* 
  * PROBLEM `mySubstring`mySubstring: (medium)
@@ -257,6 +343,26 @@ function studentPairs(array) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+function mySubstring(string, a, b) {
+
+	if (typeof string !== "string" || typeof a !== "number" || typeof b !== "number" || string === "" || a % 1 !== 0 || b % 1 !== 0 || a === NaN || b === NaN || string === null) {
+		throw "Invalid Input";
+	}
+
+	var subString = "";
+
+	for (var i = a; i <= b; i++) {
+		var sub = string.charAt(i);
+		subString = subString + sub;
+	}
+	return subString;
+}
+	
+console.log(mySubstring("This is a test", 3, 5));
+
+
+
+
 /*
  * PROBLEM `splitSwap`: (medium)
  * Write a function called `splitSwap` that swaps two halves of a given array.
@@ -267,6 +373,13 @@ function studentPairs(array) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+function splitSwap(array) {
+	
+}
+
+
+
 
 /*
  * PROBLEM `smallMultiples`: (medium)
