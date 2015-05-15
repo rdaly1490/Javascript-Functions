@@ -312,19 +312,22 @@ console.log(findMaxDiff([1,2,4,5]));
 
 
 function insertDashes(sentence) {
-		// var splitString = sentence.split(" ");
-	// var splitAgain = sentence.split("");	
-	// console.log(splitAgain);
 
-	for (var i = 0; i <= sentence.length; i++) {
-		if (sentence.charAt(i) !== " ") {
-			var dash = sentence.join("-");
+	var dashedSentence = [];
+	var splitArray = sentence.split(" ");
+	var splitAgain = [];
+
+	for (var i = 0; i < splitArray.length; i++) {
+
+			splitAgain = splitArray[i].split("");
+			var merge = splitAgain.join("-");
+			dashedSentence.push(merge);
 		}
-	}
 
-// var rejoin = splitAgain.join("-");
-	return sentence;
+		return dashedSentence.join(" ");
 }
+
+console.log(insertDashes("This is a test"));
 
 
 
@@ -432,6 +435,14 @@ console.log(multTest);
  * The input should only contain lower-case alphabetic characters. If the input
  * is invalid throw an 'Invalid Input' exception.
  */
+
+// function rot13(string) {
+// 	var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+// 	VAR rot13Array = []
+// }
+
+
+
 
 /*
  * PROBLEM `derot13`: (hard)
