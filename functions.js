@@ -375,8 +375,24 @@ console.log(mySubstring("This is a test", 3, 5));
  */
 
 function splitSwap(array) {
-	
+
+	if (array.length % 2 === 0) {
+		var split = array.splice((array.length/2), array.length);
+		var swap = split.concat(array);
+	}
+	else {
+		var split = array.splice(Math.floor((array.length/2)), array.length);
+		var swap = split.concat(array);
+	}
+
+	return swap
 }
+
+
+var myArray = [1,2,3,4,5];
+
+var splitTest = splitSwap(myArray);
+console.log(splitTest);
 
 
 
@@ -391,6 +407,22 @@ function splitSwap(array) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+function smallMultiples(a, b) {
+	
+	var counter = 0;
+	for (var i = 2; b * i <= a; i++) {
+		var keepTrack = b * i;
+		counter = counter + 1;
+	}
+	return counter;
+}
+
+var multTest = smallMultiples(7, 1);
+console.log(multTest);
+
+
+
 
 /* 
  * PROBLEM `rot13`: (hard)
