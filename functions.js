@@ -560,6 +560,28 @@ console.log(myTest2);
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+function findBoth(arr1, arr2) {
+	common = [];
+	arr1.sort();
+	arr2.sort();
+
+	for (var i = 0; i < arr1.length; i++) {
+		for (var j = 0; j < arr2.length; j++) {
+			if (arr1[i] === arr2[j]) {
+				common.push(arr1[i]);
+			}
+		}
+	}
+	return common;
+
+}
+
+var array1 = [1,2,3,4,5];
+var array2 = [2,4,7,8,9];
+var same = findBoth(array1, array2);
+console.log(same);
+ 
+
 /*
  * PROBLEM `countBoth`: (hard)
  * Write a function called `countBoth` that takes two arrays of integers a and 
