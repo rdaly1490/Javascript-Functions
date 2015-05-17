@@ -630,7 +630,7 @@ console.log(countBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
  * matrix if all entries outside the main diagonal are zero (the diagonal from 
  * the upper left to the lower right).
  * For example:
- * [
+ * [i
  *   [1, 0, 0],
  *   [0, 2, 0],
  *   [0, 0, 3]
@@ -656,6 +656,72 @@ console.log(countBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function isDiagonalMatrix(matrix) {
+	var matrixTF = [];
+
+	for (var i = 0; i < matrix.length; i++) {
+		var arr = matrix[i];
+		for (var j = 0; j < arr.length; j ++) {
+				arr.splice(i, 1);
+		}
+	}
+
+	for (var n = 0; n < arr.length; n++) {
+		if (arr[n] === 0) {
+			matrixTF.push(true);
+		}
+		else {
+			matrixTF.push(false);
+		}
+	}
+	console.log(matrixTF);
+	return matrixTF;
+}
+
+var testDiagonal = isDiagonalMatrix([
+			[1, 0],
+			[0, 1]
+		]);
+
+console.log(testDiagonal);
+
+function isDiagonalMatrix(matrix) {
+	
+	var newMatrix = [];
+	var matrixTF = [];
+
+	for (var i = 0; i < matrix.length - 1; i++) {
+		var arr = matrix[i];
+		for (var j = 0; j < arr.length; j ++) {
+			var newArray = arr.splice(arr[i], 1);
+			newMatrix.push(newArray);
+		}
+	}
+
+	for (var m = 0; m < matrix.length; m++) {
+		var arr = matrix[m];
+		for (var n = 0; n < arr.length; n++) {
+			if (arr[n] === 0) {
+				var t = 0;
+				matrixTF.push(true);
+			}
+			else {
+				var f = 1;
+				matrixTF.push(false);
+			}
+		}
+	}
+	console.log(matrixTF);
+	return matrixTF;
+}
+	
+
+var testDiagonal = isDiagonalMatrix([
+			[1, 0],
+			[0, 1]
+		]);
+
+console.log(testDiagonal);f
 /*
  * PROBLEM `isAnagram`: (hard) - Actual Interview Question
  * An anagram is a type of word play, the result of rearranging the letters of a
@@ -677,6 +743,56 @@ console.log(countBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function isAnagram(array1, array2) {
+
+	var combo = array1.concat(array2);
+	var anagram = [];
+	var counter = 0;
+	var sameLtr = [];
+	// var sameLtr = [];
+
+
+// Begin iterating over each word and it's brother
+
+	for (var i = 0, j = i+(combo.length/2); j < combo.length - 1; i++) {
+		j = i + (combo.length/2);
+		var string1 = combo[i];
+		var string2 = combo[j];
+		var newArray = string1.concat(string2);
+		var newSplit = newArray.split("");
+		var sorted = newSplit.sort();
+		// var rejoin = sorted.join("");
+		console.log(sorted);
+		if (sorted.length % 2 !== 0) {
+			anagram.push(false);
+		}
+		else {
+			for (var m = 0; m < sorted.length; m++) {
+				for (var n=1; n < sorted.length - 1; n++) {
+					if (sorted[m] === sorted[n]) {
+						sameLtr.push(sorted[m]);
+						sorted.splice(sorted[m], 1);
+					}
+				}
+		}
+			console.log(sameLtr);
+			if (sameLtr.length % 2 === 0) {
+				anagram.push(true);
+			}
+			else {
+				anagram.push(false);
+			}
+		}	
+}
+
+	return anagram;
+}
+
+
+console.log(isAnagram(
+			['cinema', 'shot', 'aba', 'rain'],
+			['iceman', 'hots', 'bab', 'train']));
+
 
 /*
  * PROBLEM `validateParentheses`: (hard) - Actual Interview Question
