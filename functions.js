@@ -561,6 +561,7 @@ console.log(myTest2);
  */
 
 function findBoth(arr1, arr2) {
+	var bothCommon = [];
 	common = [];
 	arr1.sort();
 	arr2.sort();
@@ -572,15 +573,23 @@ function findBoth(arr1, arr2) {
 			}
 		}
 	}
+
+	for (var n = 0; n < common.length; n++) {
+		for (var m = 1; m < common.length; m++) {
+			if (common[n] !== common[m]) {
+				bothCommon.push(common);
+			}
+		}
+	}
 	return common;
 
 }
 
-var array1 = [1,2,3,4,5];
-var array2 = [2,4,7,8,9];
+var array1 = [23,5,1,654,23,65];
+var array2 = [6,3,5,65,78,23,1,55];
 var same = findBoth(array1, array2);
 console.log(same);
- 
+
 
 /*
  * PROBLEM `countBoth`: (hard)
@@ -590,6 +599,30 @@ console.log(same);
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+var countBoth = function(a, b){
+  
+  var combo = [];
+
+for (var i = 0; i < a.length; i++) {
+	for(var j = 0; j < b.length; j++) {
+		if (a[i] === b[j]) {
+			combo.push(a[i]);
+			b.splice([j], 1);
+		}
+	}
+}
+	console.log(combo);
+	return combo.length;
+
+}
+
+var array1 = [1,2,3,4,5];
+var array2 = [1,2,3,4,6];
+
+console.log(countBoth(array1, array2));
+
+console.log(countBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
+
 
 /* 
  * PROBLEM `isDiagonalMatrix`: (hard)
