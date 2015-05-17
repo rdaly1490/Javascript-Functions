@@ -747,43 +747,26 @@ function isAnagram(array1, array2) {
 
 	var combo = array1.concat(array2);
 	var anagram = [];
-	var counter = 0;
-	var sameLtr = [];
-	// var sameLtr = [];
-
-
-// Begin iterating over each word and it's brother
 
 	for (var i = 0, j = i+(combo.length/2); j < combo.length - 1; i++) {
 		j = i + (combo.length/2);
 		var string1 = combo[i];
 		var string2 = combo[j];
-		var newArray = string1.concat(string2);
-		var newSplit = newArray.split("");
-		var sorted = newSplit.sort();
-		// var rejoin = sorted.join("");
-		console.log(sorted);
-		if (sorted.length % 2 !== 0) {
-			anagram.push(false);
+		var split1 = string1.split("");
+		var split2 = string2.split("");
+		var sort1 = split1.sort();
+		var sort2 = split2.sort();
+		var rejoin1 = sort1.join("");
+		var rejoin2 = sort2.join("");
+		// console.log(rejoin2);
+		// console.log(rejoin1);
+		if (rejoin1 === rejoin2) {
+			anagram.push(true);
 		}
 		else {
-			for (var m = 0; m < sorted.length; m++) {
-				for (var n=1; n < sorted.length - 1; n++) {
-					if (sorted[m] === sorted[n]) {
-						sameLtr.push(sorted[m]);
-						sorted.splice(sorted[m], 1);
-					}
-				}
+			anagram.push(false);
 		}
-			console.log(sameLtr);
-			if (sameLtr.length % 2 === 0) {
-				anagram.push(true);
-			}
-			else {
-				anagram.push(false);
-			}
-		}	
-}
+	}
 
 	return anagram;
 }
