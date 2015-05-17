@@ -570,6 +570,7 @@ function findBoth(arr1, arr2) {
 		for (var j = 0; j < arr2.length; j++) {
 			if (arr1[i] === arr2[j]) {
 				common.push(arr1[i]);
+				arr2.splice([j], 1);
 			}
 		}
 	}
@@ -589,6 +590,8 @@ var array1 = [23,5,1,654,23,65];
 var array2 = [6,3,5,65,78,23,1,55];
 var same = findBoth(array1, array2);
 console.log(same);
+
+console.log(findBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
 
 
 /*
@@ -799,6 +802,42 @@ console.log(isAnagram(
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+ function validateParentheses(string) {
+
+	var counter =0;
+
+	
+	for (var i = 0; i < string.length; i++) {
+		if (string.charAt(i) === "{") {
+			counter++;
+		}
+		else if (string.charAt(i) === "}") {
+			counter--;
+		}
+		else if (string.charAt(i) === "(") {
+			counter++;
+		}
+		else if (string.charAt(i) === ")") {
+			counter--;
+		}
+		else if (string.charAt(i) === "[") {
+			counter++;
+		}
+		else if (string.charAt(i) === "]") {
+			counter--;
+		}
+	}
+
+	if (counter === 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+console.log(validateParentheses('([{}])'));
 
 /* 
  * PROBLEM `flattenArray`: (hard) - Actual Interview Question
