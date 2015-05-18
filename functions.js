@@ -659,45 +659,17 @@ console.log(countBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
- function isDiagonalMatrix(matrix) {
-	var matrixTF = [];
-
-	for (var i = 0; i < matrix.length; i++) {
-		var arr = matrix[i];
-		for (var j = 0; j < arr.length; j ++) {
-				arr.splice(i, 1);
-		}
-	}
-
-	for (var n = 0; n < arr.length; n++) {
-		if (arr[n] === 0) {
-			matrixTF.push(true);
-		}
-		else {
-			matrixTF.push(false);
-		}
-	}
-	console.log(matrixTF);
-	return matrixTF;
-}
-
-var testDiagonal = isDiagonalMatrix([
-			[1, 0],
-			[0, 1]
-		]);
-
-console.log(testDiagonal);
-
 function isDiagonalMatrix(matrix) {
 	
 	var newMatrix = [];
 	var matrixTF = [];
+	var counter = 0;
 
 	for (var i = 0; i < matrix.length - 1; i++) {
 		var arr = matrix[i];
 		for (var j = 0; j < arr.length; j ++) {
-			var newArray = arr.splice(arr[i], 1);
-			newMatrix.push(newArray);
+			newMatrix.push(arr[i]);
+			// arr.splice(arr[i], 1);
 		}
 	}
 
@@ -706,16 +678,26 @@ function isDiagonalMatrix(matrix) {
 		for (var n = 0; n < arr.length; n++) {
 			if (arr[n] === 0) {
 				var t = 0;
-				matrixTF.push(true);
+				matrixTF.push(0);
 			}
 			else {
 				var f = 1;
-				matrixTF.push(false);
+				matrixTF.push(1);
 			}
 		}
 	}
-	console.log(matrixTF);
-	return matrixTF;
+	for (var k = 0; k < matrixTF.length; k++) {
+		if (matrixTF[k] === 1) {
+			counter++;
+		}
+	}
+
+	if (counter === matrixTF.length) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 	
 
@@ -724,7 +706,9 @@ var testDiagonal = isDiagonalMatrix([
 			[0, 1]
 		]);
 
-console.log(testDiagonal);f
+console.log(testDiagonal);
+
+
 /*
  * PROBLEM `isAnagram`: (hard) - Actual Interview Question
  * An anagram is a type of word play, the result of rearranging the letters of a
@@ -808,19 +792,19 @@ console.log(isAnagram(
 
 	
 	for (var i = 0; i < string.length; i++) {
-		if (string.charAt(i) === "{") {
+		if (string.charAt(i) === "{" && string.charAt(i+1) !== "]" && string.charAt(i+1) !== ")" ) {
 			counter++;
 		}
 		else if (string.charAt(i) === "}") {
 			counter--;
 		}
-		else if (string.charAt(i) === "(") {
+		else if (string.charAt(i) === "(" && string.charAt(i+1) !== "]" && string.charAt(i+1) !== "}") {
 			counter++;
 		}
 		else if (string.charAt(i) === ")") {
 			counter--;
 		}
-		else if (string.charAt(i) === "[") {
+		else if (string.charAt(i) === "[" && string.charAt(i+1) !== ")" && string.charAt(i+1) !== "}") {
 			counter++;
 		}
 		else if (string.charAt(i) === "]") {
@@ -837,7 +821,7 @@ console.log(isAnagram(
 
 }
 
-console.log(validateParentheses('([{}])'));
+console.log(validateParentheses('([)]'));
 
 /* 
  * PROBLEM `flattenArray`: (hard) - Actual Interview Question
