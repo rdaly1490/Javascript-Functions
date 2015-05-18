@@ -407,6 +407,17 @@ console.log(mySubstring("This is a test", 3, 5));
 
 function splitSwap(array) {
 
+ 	if (Array.isArray(array)) {
+		for (var i = 0; i < array.length; i++) {
+			if (array[i] === undefined || array[i] === "" || array[i] === NaN || array[i] === null) {
+				throw "Invalid Input";
+			}
+		}
+	}
+
+	else {
+		throw "Invalid Input";
+	}
 	if (array.length % 2 === 0) {
 		var split = array.splice((array.length/2), array.length);
 		var swap = split.concat(array);
@@ -418,12 +429,6 @@ function splitSwap(array) {
 
 	return swap
 }
-
-
-var myArray = [1,2,3,4,5];
-
-var splitTest = splitSwap(myArray);
-console.log(splitTest);
 
 
 
@@ -441,7 +446,7 @@ console.log(splitTest);
 
 function smallMultiples(a, b) {
 
-	if (typeof a !== "number" || typeof b !== "number" || a === NaN || b === NaN || a === null || b === null || a === undefined || b === undefined || a ==="" || b === "" || a === " " || b === " " || Array.isArray(a) || Array.isArray(b)) {
+	if (typeof a !== "number" || typeof b !== "number" || isNaN(a) || isNaN(b) || a === null || b === null || a === undefined || b === undefined || a ==="" || b === "" || a === " " || b === " " || Array.isArray(a) || Array.isArray(b)) {
 		throw "Invalid Input";
 	}
 
