@@ -445,6 +445,10 @@ function smallMultiples(a, b) {
 		throw "Invalid Input";
 	}
 
+	if (a ===1 && b === NaN) {
+		throw "Invalid Input";
+	}
+
 	var counter = 0;
 	for (var i = 2; b * i <= a; i++) {
 		var keepTrack = b * i;
@@ -599,13 +603,17 @@ function findBoth(arr1, arr2) {
 	for (var i = 0; i < combo.length; i++) {
 		if (typeof combo[i] !== "number" || combo[i] === NaN || combo[i] === undefined || combo[i] === null || combo[i] === "" || combo[i] % 1 !== 0) {
 				throw "Invalid Input";
+			}
 		}
 	}
-}
+
+	else {
+		throw "Invalid Input";
+	}
 	var bothCommon = [];
 	common = [];
-	arr1.sort();
-	arr2.sort();
+	// arr1.sort();
+	// arr2.sort();
 
 	for (var i = 0; i < arr1.length; i++) {
 		for (var j = 0; j < arr2.length; j++) {
@@ -643,8 +651,20 @@ console.log(findBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-var countBoth = function(a, b){
-  
+function countBoth(a, b) {
+ if (Array.isArray(a) && Array.isArray(b)) {
+	var arrayCombo = a.concat(b);
+	for (var i = 0; i < arrayCombo.length; i++) {
+		if (typeof arrayCombo[i] !== "number" || arrayCombo[i] === NaN || arrayCombo[i] === undefined || arrayCombo[i] === null || arrayCombo[i] === "" || arrayCombo[i] % 1 !== 0) {
+				throw "Invalid Input";
+			}
+		}
+	}
+
+	else {
+		throw "Invalid Input";
+	}
+
   var combo = [];
 
 for (var i = 0; i < a.length; i++) {
@@ -657,7 +677,6 @@ for (var i = 0; i < a.length; i++) {
 }
 	console.log(combo);
 	return combo.length;
-
 }
 
 var array1 = [1,2,3,4,5];
@@ -709,12 +728,19 @@ function isDiagonalMatrix(matrix) {
 	var length1 =matrix.length
 
 	for (var i = 0; i < matrix.length; i++) {
+		console.log(matrix);
+		if (matrix[i] === undefined) {
+			matrix[i] = 'undefined';
+		}
 		var arr = matrix[i];
-		for (var j = 0; j < length1; j++) {
-			if (typeof undefined) {
-				pushedMatrix.push(1);
-			}
-			else if (arr[j] !== arr[i]) {
+		console.log(matrix[i]);
+		console.log(arr);
+		for (var j = 0; j < arr.length; j++) {
+			console.log(arr);
+			// if (typeof arr[j] === undefined) {
+			// 	pushedMatrix.push("undefined");
+			// }
+			if (arr[j] !== arr[i]) {
 				pushedMatrix.push(arr[j]);
 			}
 		}
@@ -739,17 +765,9 @@ function isDiagonalMatrix(matrix) {
 
 }
 	
-console.log(isDiagonalMatrix(
-			[undefined, 'Aaron'],
-			[0, false]));
-
-var testDiagonal = isDiagonalMatrix([
-			['a', 0, 0],
-			[1, 'b', 2],
-			[3, 4, "c"],
-		]);
-
-console.log(testDiagonal);
+console.log(isDiagonalMatrix([
+			[undefined, 0],
+			[0, false]]));
 
 
 /*
@@ -773,9 +791,22 @@ console.log(testDiagonal);
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-function isAnagram(array1, array2) {
+function isAnagram(a, b) {
 
-	var combo = array1.concat(array2);
+ 	if (Array.isArray(a) && Array.isArray(b)) {
+		var arrayCombo = a.concat(b);
+		for (var i = 0; i < arrayCombo.length; i++) {
+			if (typeof arrayCombo[i] !== "string" || arrayCombo[i] === "") {
+				throw "Invalid Input";
+			}
+		}
+	}
+
+	else {
+		throw "Invalid Input";
+	}
+
+	var combo = a.concat(b);
 	var anagram = [];
 
 	for (var i = 0, j = i+(combo.length/2); j < combo.length - 1; i++) {
@@ -800,11 +831,6 @@ function isAnagram(array1, array2) {
 
 	return anagram;
 }
-
-
-console.log(isAnagram(
-			['cinema', 'shot', 'aba', 'rain'],
-			['iceman', 'hots', 'bab', 'train']));
 
 
 /*
