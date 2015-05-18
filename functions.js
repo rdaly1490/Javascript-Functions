@@ -33,10 +33,16 @@ console.log(isLengthThree);
 function concatenateArrays(a, b) {
 
 	// your code goes here
-	if (typeof a || typeof b === Array && "number") {
+	if (Array.isArray(a) && Array.isArray(b)) {
 		var combo = a.concat(b);
-		return combo;		
-	}
+		for (var i = 0; i < combo.length; i++) {
+			if (typeof combo[i] !== "number" || combo[i] === NaN || combo[i] === undefined || combo[i] === null || combo[i] === "" || combo[i] % 1 !== 0) {
+ 				throw "Invalid Input";
+			}
+		}
+
+	return combo;
+}
 	else {
 		throw "Invalid Input";
 	}
@@ -156,17 +162,25 @@ var zero = absVal(0);
  */
 
  function myMax(array) {
- 	if (Array.isArray(array)) {
- 		var largest = Math.max.apply(Math, array);
- 		return largest;
- 	}
+
+	if (Array.isArray(array)) {
+		for (var i = 0; i < array.length; i++) {
+			if (typeof array[i] !== "number" || array[i] === NaN || array[i] === undefined || array[i] === null || array[i] === "" || array[i] % 1 !== 0) {
+ 				throw "Invalid Input";
+ 			}
+ 		}
+	}
  	else {
  		throw "Invalid Input";
- 	}
+ 		}
+
+ 	var largest = Math.max.apply(Math, array);
+ 	return largest;
  }
 
-var max = myMax([1,2,3,4]);
+var max = myMax(["a",2,3,4]);
 console.log(max);
+console.log(myMax(1));
 
 /*
  * PROBLEM `getMonth`: (easy)
@@ -277,9 +291,20 @@ console.log(sumSquares(4));
 
 function findMaxDiff(numberArray) {
 	
-	if (!Array.isArray(numberArray)) {
-		throw "Invalid Input";
+	// if (!Array.isArray(numberArray)) {
+	// 	throw "Invalid Input";
+	// }
+		if (Array.isArray(numberArray)) {
+		for (var i = 0; i < numberArray.length; i++) {
+			if (typeof numberArray[i] !== "number" || numberArray[i] === NaN || numberArray[i] === undefined || numberArray[i] === null || numberArray[i] === "" || numberArray[i] % 1 !== 0) {
+ 				throw "Invalid Input";
+ 			}
+ 		}
 	}
+ 	else {
+ 		throw "Invalid Input";
+ 		}
+
 	var diff = 0;
 	var maxDiff = 0;
 
@@ -313,6 +338,9 @@ console.log(findMaxDiff([1,2,4,5]));
 
 function insertDashes(sentence) {
 
+	if (typeof sentence !== "string") {
+		throw "Invalid Input";
+	}
 	var dashedSentence = [];
 	var splitArray = sentence.split(" ");
 	var splitAgain = [];
@@ -412,7 +440,11 @@ console.log(splitTest);
  */
 
 function smallMultiples(a, b) {
-	
+
+	if (typeof a !== "number" || typeof b !== "number" || a === NaN || b === NaN || a === null || b === null || a === undefined || b === undefined || a ==="" || b === "" || a === " " || b === " " || Array.isArray(a) || Array.isArray(b)) {
+		throw "Invalid Input";
+	}
+
 	var counter = 0;
 	for (var i = 2; b * i <= a; i++) {
 		var keepTrack = b * i;
@@ -661,49 +693,51 @@ console.log(countBoth([23,5,1,654,23,65], [6,3,5,65,78,23,1,55]));
 
 function isDiagonalMatrix(matrix) {
 	
-	var newMatrix = [];
-	var matrixTF = [];
-	var counter = 0;
+	// var newMatrix = [];
+	var pushedMatrix = [];
+	var zeros = [];
+	var numbers = [];
+	var length1 =matrix.length
 
-	for (var i = 0; i < matrix.length - 1; i++) {
+	for (var i = 0; i < matrix.length; i++) {
 		var arr = matrix[i];
-		for (var j = 0; j < arr.length; j ++) {
-			newMatrix.push(arr[i]);
-			// arr.splice(arr[i], 1);
-		}
-	}
-
-	for (var m = 0; m < matrix.length; m++) {
-		var arr = matrix[m];
-		for (var n = 0; n < arr.length; n++) {
-			if (arr[n] === 0) {
-				var t = 0;
-				matrixTF.push(0);
+		for (var j = 0; j < length1; j++) {
+			if (typeof undefined) {
+				pushedMatrix.push(1);
 			}
-			else {
-				var f = 1;
-				matrixTF.push(1);
+			else if (arr[j] !== arr[i]) {
+				pushedMatrix.push(arr[j]);
 			}
 		}
 	}
-	for (var k = 0; k < matrixTF.length; k++) {
-		if (matrixTF[k] === 1) {
-			counter++;
+
+
+	for (var n = 0; n < pushedMatrix.length; n++) {
+		if (pushedMatrix[n] === 0) {
+			zeros.push(pushedMatrix[n]);
+		}
+		else {
+			numbers.push(pushedMatrix[n]);
 		}
 	}
 
-	if (counter === matrixTF.length) {
+	if (numbers.length === 0) {
 		return true;
 	}
 	else {
 		return false;
 	}
+
 }
 	
+console.log(isDiagonalMatrix(
+			[undefined, 'Aaron'],
+			[0, false]));
 
 var testDiagonal = isDiagonalMatrix([
-			[1, 0],
-			[0, 1]
+			['a', 0, 0],
+			[1, 'b', 2],
+			[3, 4, "c"],
 		]);
 
 console.log(testDiagonal);
