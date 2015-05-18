@@ -376,7 +376,7 @@ console.log(insertDashes("This is a test"));
 
 function mySubstring(string, a, b) {
 
-	if (typeof string !== "string" || typeof a !== "number" || typeof b !== "number" || string === "" || a % 1 !== 0 || b % 1 !== 0 || a === NaN || b === NaN || string === null) {
+	if (typeof string !== "string" || typeof a !== "number" || typeof b !== "number" || string === "" || a % 1 !== 0 || b % 1 !== 0 || a === NaN || b === NaN || string === null || string.length < b) {
 		throw "Invalid Input";
 	}
 
@@ -593,6 +593,15 @@ console.log(myTest2);
  */
 
 function findBoth(arr1, arr2) {
+
+	if (Array.isArray(arr1) && Array.isArray(arr2)) {
+	var combo = arr1.concat(arr2);
+	for (var i = 0; i < combo.length; i++) {
+		if (typeof combo[i] !== "number" || combo[i] === NaN || combo[i] === undefined || combo[i] === null || combo[i] === "" || combo[i] % 1 !== 0) {
+				throw "Invalid Input";
+		}
+	}
+}
 	var bothCommon = [];
 	common = [];
 	arr1.sort();
