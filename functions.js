@@ -892,6 +892,33 @@ function isAnagram(a, b) {
 
 console.log(validateParentheses('([)]'));
 
+// function validateParentheses(string) {
+ 
+
+//   var parentheses = "[]{}()",
+//     stack = [],
+//     character
+
+//   for(var i = 0; character = string[i]; i++) {
+//     var position = parentheses.indexOf(character);
+
+//     if(position === -1) {
+//       continue;
+//     }
+// console.log(position);
+//     if(position % 2 === 0) {
+//       stack.push(position + 1);
+//     } 
+//     else if (stack.length === 0 || stack.pop() !== position) {
+//         return false;
+//     }
+//   }
+//   return stack.length === 0;
+// }
+
+// console.log(validateParentheses('([)]'));
+// console.log(validateParentheses('([])'));
+
 /* 
  * PROBLEM `flattenArray`: (hard) - Actual Interview Question
  * Write a function called flattenArray that takes an array of any type of
@@ -905,6 +932,15 @@ console.log(validateParentheses('([)]'));
  *
  * Insane mode: do this without recursion.
  */
+function flattenArray(array) {
+  
+    var arr = array
+ 
+    var flatArr = [].concat.apply([],arr);
+ 
+    console.log(flatArr);
 
+    return flatArr;
+}
 
 
