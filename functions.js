@@ -732,25 +732,24 @@ function isDiagonalMatrix(matrix) {
 	var numbers = [];
 	var length1 =matrix.length
 
+	if (matrix.length === 1) {
+		return true;
+	}
 	for (var i = 0; i < matrix.length; i++) {
-		console.log(matrix);
+		// console.log(matrix);
 		if (matrix[i] === undefined) {
 			matrix[i] = 'undefined';
 		}
 		var arr = matrix[i];
-		console.log(matrix[i]);
-		console.log(arr);
+		// console.log(matrix[i]);
+		// console.log(arr);
 		for (var j = 0; j < arr.length; j++) {
-			console.log(arr);
-			// if (typeof arr[j] === undefined) {
-			// 	pushedMatrix.push("undefined");
-			// }
 			if (arr[j] !== arr[i]) {
 				pushedMatrix.push(arr[j]);
 			}
 		}
 	}
-
+// console.log(pushedMatrix);
 
 	for (var n = 0; n < pushedMatrix.length; n++) {
 		if (pushedMatrix[n] === 0) {
@@ -761,7 +760,7 @@ function isDiagonalMatrix(matrix) {
 		}
 	}
 
-	if (numbers.length === 0) {
+	if (numbers.length === 0  && pushedMatrix.length > 1) {
 		return true;
 	}
 	else {
@@ -769,10 +768,6 @@ function isDiagonalMatrix(matrix) {
 	}
 
 }
-	
-console.log(isDiagonalMatrix([
-			[undefined, 0],
-			[0, false]]));
 
 
 /*
